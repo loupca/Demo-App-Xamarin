@@ -10,22 +10,24 @@ using MASXamarinFormsDemo.Views;
 
 namespace MASXamarinFormsDemo.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class IdeasViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<Idea> Ideas { get; set; }
+
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public IdeasViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Title = "Ideas";
+            Ideas = new ObservableCollection<Idea>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            // Subscribe to changes in the Ideas list.
+            MessagingCenter.Subscribe<NewItemPage, Idea>(this, "AddIdea", async (obj, item) =>
             {
-                var _item = item as Item;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                var _item = item as Idea;
+                Ideas.Add(_item);
+                await IdeaService.AddIdeaAsync(_item);
             });
         }
 
@@ -38,11 +40,11 @@ namespace MASXamarinFormsDemo.ViewModels
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                Ideas.Clear();
+                var items = await IdeaService.GetIdeasAsync(true);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    Ideas.Add(item);
                 }
             }
             catch (Exception ex)

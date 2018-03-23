@@ -12,7 +12,7 @@ namespace MASXamarinFormsDemo.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IIdeaService<Idea> IdeaService => DependencyService.Get<IIdeaService<Idea>>() ?? new MockIdeaService();
 
         bool isBusy = false;
         public bool IsBusy

@@ -9,25 +9,25 @@ using MASXamarinFormsDemo.ViewModels;
 namespace MASXamarinFormsDemo.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ItemDetailPage : ContentPage
+	public partial class IdeaDetailPage : ContentPage
 	{
         ItemDetailViewModel viewModel;
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public IdeaDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
+        public IdeaDetailPage()
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new Idea
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                Title = "Idea Title",
+                Summary = "Description of the idea."
             };
 
             viewModel = new ItemDetailViewModel(item);

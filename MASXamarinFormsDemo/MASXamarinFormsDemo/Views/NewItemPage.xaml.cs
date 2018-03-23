@@ -11,16 +11,16 @@ namespace MASXamarinFormsDemo.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Idea Idea { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Idea = new Idea
             {
-                Text = "Item name",
-                Description = "This is an item description."
+                Title = "Item name",
+                Summary = "This is an item description."
             };
 
             BindingContext = this;
@@ -28,7 +28,7 @@ namespace MASXamarinFormsDemo.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddItem", Idea);
             await Navigation.PopModalAsync();
         }
     }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="MASXamarinFormsDemo.Views.NavMenuPage"
+             >
+  <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+                
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <ff:CachedImage Source="{Binding ImageFilename}" Aspect="AspectFit" WidthRequest="35"/>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" 
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"
+                   />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>

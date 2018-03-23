@@ -1,40 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using MASXamarinFormsDemo.Models;
-using MASXamarinFormsDemo.Views;
 using MASXamarinFormsDemo.ViewModels;
 
 namespace MASXamarinFormsDemo.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ItemsPage : ContentPage
+	public partial class IdeasPage : ContentPage
 	{
-        ItemsViewModel viewModel;
+        readonly IdeasViewModel _viewModel;
 
-        public ItemsPage()
+        public IdeasPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new IdeasViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as Idea;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new IdeaDetailPage(new ItemDetailViewModel(item)));
 
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            // Manually deselect item so it doesn't stay selected.
+            IdeasListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -46,8 +41,8 @@ namespace MASXamarinFormsDemo.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (_viewModel.Ideas.Count == 0)
+                _viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

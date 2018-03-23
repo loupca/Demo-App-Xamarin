@@ -6,11 +6,11 @@ namespace MASXamarinFormsDemo.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Idea Idea { get; set; }
+        public ItemDetailViewModel(Idea idea = null)
         {
-            Title = item?.Text;
-            Item = item;
+            Title = idea?.Title;
+            Idea = idea;
         }
     }
 }
