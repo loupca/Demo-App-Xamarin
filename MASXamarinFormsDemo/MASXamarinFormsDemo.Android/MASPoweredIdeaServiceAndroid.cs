@@ -1,16 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using MASXamarinFormsDemo.Droid;
 using MASXamarinFormsDemo.Models;
+using MASXamarinFormsDemo.Services;
+using Xamarin.Forms;
 
-namespace MASXamarinFormsDemo.Services
+[assembly: Xamarin.Forms.Dependency(typeof(MASPoweredIdeaServiceAndroid))]
+namespace MASXamarinFormsDemo.Droid
 {
-    public class MASPoweredIdeaService : IIdeaService<Idea>
+    class MASPoweredIdeaServiceAndroid : IIdeaService<Idea>
     {
+        #region Interface Required Functions
 
-        #region Interface Required Items
-
+        /// <inheritdoc />
         public bool IsAuthenticated { get; set; }
 
         /// <inheritdoc />
