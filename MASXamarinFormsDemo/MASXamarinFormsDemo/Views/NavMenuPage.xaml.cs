@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
+using MASXamarinFormsDemo.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,7 +44,8 @@ namespace MASXamarinFormsDemo.Views
                     await DisplayAlert("Whoops!", "Press OK for finger exercise.", "OK");
                     break;
                 case "Log Out":
-                    await DisplayAlert("Whoops!", "You're not logged in.", "OK");
+                    var success = await App.IdeaService.LogOut();
+                    await DisplayAlert("Info", await App.IdeaService.LogOut() ? "You've been logged out." : "Couldn't log you out.", "OK");
                     break;
             }
 

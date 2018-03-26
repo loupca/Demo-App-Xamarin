@@ -10,6 +10,7 @@ using MASXamarinFormsDemo.Services;
 using MASXamarinFormsDemo.Exceptions;
 using MASXamarinFormsDemo.Models.JsonResponse;
 using Newtonsoft.Json;
+using Org.Json;
 
 namespace MASXamarinFormsDemo.Droid
 {
@@ -36,12 +37,12 @@ namespace MASXamarinFormsDemo.Droid
         #region Interface Required Functions
 
         /// <inheritdoc />
-        public bool IsAuthenticated => MASUser.CurrentUser != null;
+        public bool IsAuthenticated => MASUser.CurrentUser?.IsAuthenticated ?? false;
 
         /// <inheritdoc />
         public async Task<bool> LogIn()
         {
-            var funcName = "LogOut";
+            var funcName = "LogIn";
 
             try
             {
@@ -107,9 +108,51 @@ namespace MASXamarinFormsDemo.Droid
         }
 
         /// <inheritdoc />
-        public Task<bool> AddIdeaAsync(Idea item)
+        public async Task<bool> AddIdeaAsync(Idea item)
         {
-            throw new NotImplementedException();
+            var funcName = "AddIdeaAsync";
+
+            try
+            {
+                // Enable debugging.
+                MAS.Debug();
+
+                // Use Uri.Builder() to build the Uri and pass it into a MASRequestBuilder.
+                var uriBuilder = new Android.Net.Uri.Builder();
+
+                // Append the endpoint path.
+                uriBuilder.AppendEncodedPath("ideas");
+
+                // Create the request builder.
+                var builder = new MASRequestBuilder(uriBuilder.Build());
+
+                // Build the new Idea object.
+                var json = JsonConvert.SerializeObject(new IdeaCreateRequestJson
+                {
+                    Title = item.Title,
+                    Description = item.Summary,
+                    Department = item.Department
+                });
+
+                // Set the response type to JSON.
+                builder.ResponseBody(MASResponseBody.JsonBody());
+                builder.Post(MASRequestBody.JsonBody(new JSONObject(json))); // We're adding, so mark as POST. Default is GET.
+
+                // Invoke the API.
+                var request = builder.Build();
+                var result = await MAS.Invoke(request);
+
+                // Make sure we received an OK/200 response.
+                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
         }
 
         /// <inheritdoc />
@@ -206,7 +249,7 @@ namespace MASXamarinFormsDemo.Droid
             try
             {
                 if (IsSdkInitialized(_mainActivity)) return true;
-                
+
                 // Change the default Configuration
                 // Example: MAS.SetConfigurationFileName("custom.json");
                 MAS.SetConfigurationFileName("msso_config_public.json");

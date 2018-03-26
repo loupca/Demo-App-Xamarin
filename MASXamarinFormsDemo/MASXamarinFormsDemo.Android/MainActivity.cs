@@ -22,13 +22,13 @@ namespace MASXamarinFormsDemo.Droid
             // Finish the Android activity startup process.
             base.OnCreate(bundle);
 
-            // Hand control over to Xamarin.Forms.
+            // Attempt to initialize MAS and pass the reference to our Xamarin.Forms App instance.
             try
             {
                 global::Xamarin.Forms.Forms.Init(this, bundle);
                 App.IdeaService = new MASPoweredIdeaServiceAndroid(this);
             }
-            catch (CouldNotStartMasException ex)
+            catch (CouldNotStartMasException)
             {
                 // Show an alert if we couldn't start MAS.                
                 var alert = new AlertDialog.Builder(this);
@@ -39,8 +39,8 @@ namespace MASXamarinFormsDemo.Droid
                 return;
             }
 
+            // Hand control over to Xamarin.Forms.
             LoadApplication(new App());
-
         }
     }
 }
