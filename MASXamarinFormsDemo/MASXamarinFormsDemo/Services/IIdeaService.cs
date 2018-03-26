@@ -9,12 +9,22 @@ namespace MASXamarinFormsDemo.Services
         /// <summary>
         /// Flags whether the user is currently authenticated.
         /// </summary>
-        bool IsAuthenticated { get; set; }
+        bool IsAuthenticated { get; }
+
+        /// <summary>
+        /// Logs the user in. If the user is already logged in, True will be returned.
+        /// </summary>
+        Task<bool> LogIn();
 
         /// <summary>
         /// Logs the user out. If the user is not logged in, True will be returned.
         /// </summary>
         Task<bool> LogOut();
+
+        /// <summary>
+        /// Gets currently logged-in user's name. Returns null if not logged in.
+        /// </summary>
+        Task<string> GetCurrentUserName();
 
         /// <summary>
         /// Adds an Idea. Will automatically authenticate through MAS, if necessary.
@@ -42,7 +52,7 @@ namespace MASXamarinFormsDemo.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T> GetIdeaAsync(string id);
+        Task<T> GetIdeaAsync(Guid id);
 
         /// <summary>
         /// Gets all Ideas.

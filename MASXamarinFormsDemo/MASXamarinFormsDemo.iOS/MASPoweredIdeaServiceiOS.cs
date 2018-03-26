@@ -6,7 +6,6 @@ using MASXamarinFormsDemo.iOS;
 using MASXamarinFormsDemo.Models;
 using MASXamarinFormsDemo.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MASPoweredIdeaServiceiOS))]
 namespace MASXamarinFormsDemo.iOS
 {
     public class MASPoweredIdeaServiceiOS : IIdeaService<Idea>
@@ -16,8 +15,18 @@ namespace MASXamarinFormsDemo.iOS
         /// <inheritdoc />
         public bool IsAuthenticated { get; set; }
 
+        public Task<bool> LogIn()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <inheritdoc />
         public Task<bool> LogOut()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetCurrentUserName()
         {
             throw new NotImplementedException();
         }
@@ -41,7 +50,7 @@ namespace MASXamarinFormsDemo.iOS
         }
 
         /// <inheritdoc />
-        public Task<Idea> GetIdeaAsync(string id)
+        public Task<Idea> GetIdeaAsync(Guid id)
         {
             throw new NotImplementedException();
         }

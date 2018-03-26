@@ -1,0 +1,259 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MASUnit", "MASUnit.shproj", "{1B940BB6-EDE9-4B80-BDB8-7DF1186488CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit.iOS", "MASUnit.iOS\MASUnit.iOS.csproj", "{FF12C543-7C89-491B-B1EF-AEDDADF938B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit.Android", "MASUnit.Android\MASUnit.Android.csproj", "{03CBDE40-78CF-441E-BAD2-801747623A5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDE971A5-0662-4504-B78A-0FCF79B807F7}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit.iOS.MSSO", "MASUnit.iOS.MSSO\MASUnit.iOS.MSSO.csproj", "{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{53E9A30D-6A27-40C9-AB5E-0439F34B6596}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FAKE", "FAKE", "{780561B2-014C-4628-B399-0EF1D77138BC}"
+	ProjectSection(SolutionItems) = preProject
+		tools\FAKE\Argu.dll = tools\FAKE\Argu.dll
+		tools\FAKE\Argu.pdb = tools\FAKE\Argu.pdb
+		tools\FAKE\Argu.xml = tools\FAKE\Argu.xml
+		tools\FAKE\Fake.Deploy.exe = tools\FAKE\Fake.Deploy.exe
+		tools\FAKE\Fake.Deploy.exe.config = tools\FAKE\Fake.Deploy.exe.config
+		tools\FAKE\Fake.Deploy.Lib.dll = tools\FAKE\Fake.Deploy.Lib.dll
+		tools\FAKE\Fake.Deploy.Lib.dll.config = tools\FAKE\Fake.Deploy.Lib.dll.config
+		tools\FAKE\Fake.Deploy.Lib.pdb = tools\FAKE\Fake.Deploy.Lib.pdb
+		tools\FAKE\Fake.Deploy.Lib.pdb.srcsrv = tools\FAKE\Fake.Deploy.Lib.pdb.srcsrv
+		tools\FAKE\Fake.Deploy.Lib.xml = tools\FAKE\Fake.Deploy.Lib.xml
+		tools\FAKE\Fake.Deploy.pdb = tools\FAKE\Fake.Deploy.pdb
+		tools\FAKE\Fake.Deploy.pdb.srcsrv = tools\FAKE\Fake.Deploy.pdb.srcsrv
+		tools\FAKE\FAKE.exe = tools\FAKE\FAKE.exe
+		tools\FAKE\FAKE.exe.config = tools\FAKE\FAKE.exe.config
+		tools\FAKE\Fake.Experimental.dll = tools\FAKE\Fake.Experimental.dll
+		tools\FAKE\Fake.Experimental.dll.config = tools\FAKE\Fake.Experimental.dll.config
+		tools\FAKE\Fake.Experimental.pdb = tools\FAKE\Fake.Experimental.pdb
+		tools\FAKE\Fake.Experimental.pdb.srcsrv = tools\FAKE\Fake.Experimental.pdb.srcsrv
+		tools\FAKE\Fake.Experimental.XML = tools\FAKE\Fake.Experimental.XML
+		tools\FAKE\Fake.FluentMigrator.dll = tools\FAKE\Fake.FluentMigrator.dll
+		tools\FAKE\Fake.FluentMigrator.pdb = tools\FAKE\Fake.FluentMigrator.pdb
+		tools\FAKE\Fake.FluentMigrator.pdb.srcsrv = tools\FAKE\Fake.FluentMigrator.pdb.srcsrv
+		tools\FAKE\Fake.FluentMigrator.XML = tools\FAKE\Fake.FluentMigrator.XML
+		tools\FAKE\FAKE.FSharp.Compiler.Service.dll = tools\FAKE\FAKE.FSharp.Compiler.Service.dll
+		tools\FAKE\Fake.Gallio.dll = tools\FAKE\Fake.Gallio.dll
+		tools\FAKE\Fake.Gallio.dll.config = tools\FAKE\Fake.Gallio.dll.config
+		tools\FAKE\Fake.Gallio.pdb = tools\FAKE\Fake.Gallio.pdb
+		tools\FAKE\Fake.Gallio.pdb.srcsrv = tools\FAKE\Fake.Gallio.pdb.srcsrv
+		tools\FAKE\Fake.Gallio.XML = tools\FAKE\Fake.Gallio.XML
+		tools\FAKE\Fake.IIS.dll = tools\FAKE\Fake.IIS.dll
+		tools\FAKE\Fake.IIS.dll.config = tools\FAKE\Fake.IIS.dll.config
+		tools\FAKE\Fake.IIS.pdb = tools\FAKE\Fake.IIS.pdb
+		tools\FAKE\Fake.IIS.pdb.srcsrv = tools\FAKE\Fake.IIS.pdb.srcsrv
+		tools\FAKE\Fake.IIS.XML = tools\FAKE\Fake.IIS.XML
+		tools\FAKE\FAKE.pdb = tools\FAKE\FAKE.pdb
+		tools\FAKE\FAKE.pdb.srcsrv = tools\FAKE\FAKE.pdb.srcsrv
+		tools\FAKE\Fake.SQL.dll = tools\FAKE\Fake.SQL.dll
+		tools\FAKE\Fake.SQL.dll.config = tools\FAKE\Fake.SQL.dll.config
+		tools\FAKE\Fake.SQL.pdb = tools\FAKE\Fake.SQL.pdb
+		tools\FAKE\Fake.SQL.pdb.srcsrv = tools\FAKE\Fake.SQL.pdb.srcsrv
+		tools\FAKE\Fake.SQL.XML = tools\FAKE\Fake.SQL.XML
+		tools\FAKE\FakeLib.dll = tools\FAKE\FakeLib.dll
+		tools\FAKE\FakeLib.dll.config = tools\FAKE\FakeLib.dll.config
+		tools\FAKE\FakeLib.pdb = tools\FAKE\FakeLib.pdb
+		tools\FAKE\FakeLib.pdb.srcsrv = tools\FAKE\FakeLib.pdb.srcsrv
+		tools\FAKE\FakeLib.XML = tools\FAKE\FakeLib.XML
+		tools\FAKE\FluentMigrator.dll = tools\FAKE\FluentMigrator.dll
+		tools\FAKE\FluentMigrator.pdb = tools\FAKE\FluentMigrator.pdb
+		tools\FAKE\FluentMigrator.Runner.dll = tools\FAKE\FluentMigrator.Runner.dll
+		tools\FAKE\FluentMigrator.Runner.pdb = tools\FAKE\FluentMigrator.Runner.pdb
+		tools\FAKE\FluentMigrator.xml = tools\FAKE\FluentMigrator.xml
+		tools\FAKE\FSharp.Core.dll = tools\FAKE\FSharp.Core.dll
+		tools\FAKE\FSharp.Core.optdata = tools\FAKE\FSharp.Core.optdata
+		tools\FAKE\FSharp.Core.sigdata = tools\FAKE\FSharp.Core.sigdata
+		tools\FAKE\FSharp.Core.xml = tools\FAKE\FSharp.Core.xml
+		tools\FAKE\HashLib.dll = tools\FAKE\HashLib.dll
+		tools\FAKE\ICSharpCode.SharpZipLib.dll = tools\FAKE\ICSharpCode.SharpZipLib.dll
+		tools\FAKE\License.txt = tools\FAKE\License.txt
+		tools\FAKE\Microsoft.Build.Utilities.v3.5.dll = tools\FAKE\Microsoft.Build.Utilities.v3.5.dll
+		tools\FAKE\Microsoft.Build.Utilities.v3.5.resources.dll = tools\FAKE\Microsoft.Build.Utilities.v3.5.resources.dll
+		tools\FAKE\Microsoft.Build.Utilities.v3.5.xml = tools\FAKE\Microsoft.Build.Utilities.v3.5.xml
+		tools\FAKE\Microsoft.SqlServer.ConnectionInfo.dll = tools\FAKE\Microsoft.SqlServer.ConnectionInfo.dll
+		tools\FAKE\Microsoft.SqlServer.Management.Sdk.Sfc.dll = tools\FAKE\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+		tools\FAKE\Microsoft.SqlServer.Smo.dll = tools\FAKE\Microsoft.SqlServer.Smo.dll
+		tools\FAKE\Microsoft.Web.Administration.dll = tools\FAKE\Microsoft.Web.Administration.dll
+		tools\FAKE\Microsoft.Web.XmlTransform.dll = tools\FAKE\Microsoft.Web.XmlTransform.dll
+		tools\FAKE\Mono.Cecil.dll = tools\FAKE\Mono.Cecil.dll
+		tools\FAKE\Mono.Cecil.Mdb.dll = tools\FAKE\Mono.Cecil.Mdb.dll
+		tools\FAKE\Mono.Cecil.Pdb.dll = tools\FAKE\Mono.Cecil.Pdb.dll
+		tools\FAKE\Mono.Cecil.Rocks.dll = tools\FAKE\Mono.Cecil.Rocks.dll
+		tools\FAKE\Nancy.Authentication.Stateless.dll = tools\FAKE\Nancy.Authentication.Stateless.dll
+		tools\FAKE\Nancy.Authentication.Stateless.xml = tools\FAKE\Nancy.Authentication.Stateless.xml
+		tools\FAKE\Nancy.dll = tools\FAKE\Nancy.dll
+		tools\FAKE\Nancy.Hosting.Self.dll = tools\FAKE\Nancy.Hosting.Self.dll
+		tools\FAKE\Nancy.Hosting.Self.xml = tools\FAKE\Nancy.Hosting.Self.xml
+		tools\FAKE\Nancy.Serialization.JsonNet.dll = tools\FAKE\Nancy.Serialization.JsonNet.dll
+		tools\FAKE\Nancy.xml = tools\FAKE\Nancy.xml
+		tools\FAKE\Newtonsoft.Json.dll = tools\FAKE\Newtonsoft.Json.dll
+		tools\FAKE\Newtonsoft.Json.xml = tools\FAKE\Newtonsoft.Json.xml
+		tools\FAKE\NLog.dll = tools\FAKE\NLog.dll
+		tools\FAKE\NLog.xml = tools\FAKE\NLog.xml
+		tools\FAKE\NuGet.Core.dll = tools\FAKE\NuGet.Core.dll
+		tools\FAKE\README.markdown = tools\FAKE\README.markdown
+		tools\FAKE\RELEASE_NOTES.md = tools\FAKE\RELEASE_NOTES.md
+		tools\FAKE\Renci.SshNet.dll = tools\FAKE\Renci.SshNet.dll
+		tools\FAKE\Renci.SshNet.xml = tools\FAKE\Renci.SshNet.xml
+		tools\FAKE\Serilog.dll = tools\FAKE\Serilog.dll
+		tools\FAKE\Serilog.FullNetFx.dll = tools\FAKE\Serilog.FullNetFx.dll
+		tools\FAKE\Serilog.FullNetFx.pdb = tools\FAKE\Serilog.FullNetFx.pdb
+		tools\FAKE\Serilog.FullNetFx.xml = tools\FAKE\Serilog.FullNetFx.xml
+		tools\FAKE\Serilog.pdb = tools\FAKE\Serilog.pdb
+		tools\FAKE\Serilog.Sinks.NLog.dll = tools\FAKE\Serilog.Sinks.NLog.dll
+		tools\FAKE\Serilog.Sinks.NLog.xml = tools\FAKE\Serilog.Sinks.NLog.xml
+		tools\FAKE\Serilog.xml = tools\FAKE\Serilog.xml
+		tools\FAKE\StyleCop.CSharp.dll = tools\FAKE\StyleCop.CSharp.dll
+		tools\FAKE\StyleCop.CSharp.Rules.dll = tools\FAKE\StyleCop.CSharp.Rules.dll
+		tools\FAKE\StyleCop.dll = tools\FAKE\StyleCop.dll
+		tools\FAKE\System.Buffers.dll = tools\FAKE\System.Buffers.dll
+		tools\FAKE\System.Diagnostics.DiagnosticSource.dll = tools\FAKE\System.Diagnostics.DiagnosticSource.dll
+		tools\FAKE\System.Diagnostics.DiagnosticSource.xml = tools\FAKE\System.Diagnostics.DiagnosticSource.xml
+		tools\FAKE\System.Net.Http.Extensions.dll = tools\FAKE\System.Net.Http.Extensions.dll
+		tools\FAKE\System.Net.Http.Extensions.xml = tools\FAKE\System.Net.Http.Extensions.xml
+		tools\FAKE\System.Net.Http.Primitives.dll = tools\FAKE\System.Net.Http.Primitives.dll
+		tools\FAKE\System.Net.Http.Primitives.xml = tools\FAKE\System.Net.Http.Primitives.xml
+		tools\FAKE\System.Runtime.InteropServices.RuntimeInformation.dll = tools\FAKE\System.Runtime.InteropServices.RuntimeInformation.dll
+		tools\FAKE\System.Threading.Tasks.Extensions.dll = tools\FAKE\System.Threading.Tasks.Extensions.dll
+		tools\FAKE\System.Threading.Tasks.Extensions.xml = tools\FAKE\System.Threading.Tasks.Extensions.xml
+		tools\FAKE\System.ValueTuple.dll = tools\FAKE\System.ValueTuple.dll
+		tools\FAKE\VSFile.dll = tools\FAKE\VSFile.dll
+		tools\FAKE\VSFile.xml = tools\FAKE\VSFile.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit.Android.MSSO", "MASUnit.Android.MSSO\MASUnit.Android.MSSO.csproj", "{5D4D499E-24CB-4E8C-A3A8-995F59209224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASxUnit.Android.PCL", "MASUnit.Android.PCL\MASxUnit.Android.PCL.csproj", "{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASxUnit.Android.PCL.Runner", "MASUnit.Android.PCL.Runner\MASxUnit.Android.PCL.Runner.csproj", "{2FC58A97-44EC-441A-94E5-8E923FF3E69E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASxUnit.iOS.PCL.Runner", "MASUnit.iOS.Runner\MASxUnit.iOS.PCL.Runner.csproj", "{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASxUnit.iOS.PCL", "MASUnit.iOS.PCL\MASxUnit.iOS.PCL.csproj", "{4DC98129-CA62-4C09-A41D-7009324B199F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit3.iOS.Standard", "MASUnit3.iOS.Standard\MASUnit3.iOS.Standard.csproj", "{CA9C66F9-D765-461E-B95F-98C19E0DBA85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit3.iOS.Standard.Runner", "MASUnit3.iOS.Standard.Runner\MASUnit3.iOS.Standard.Runner.csproj", "{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit3.Droid.Standard", "MASUnit3.Droid.Standard\MASUnit3.Droid.Standard.csproj", "{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MASUnit3.Droid.Standard.Runner", "MASUnit3.Droid.Standard.Runner\MASUnit3.Droid.Standard.Runner.csproj", "{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Release|iPhone.Build.0 = Release|iPhone
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FF12C543-7C89-491B-B1EF-AEDDADF938B5}.Debug|iPhone.Build.0 = Debug|iPhone
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Release|iPhone.Build.0 = Release|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{03CBDE40-78CF-441E-BAD2-801747623A5D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Release|iPhone.Build.0 = Release|iPhone
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BB7E9688-EAAC-4952-8FB3-93AA43A9B556}.Debug|iPhone.Build.0 = Debug|iPhone
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Release|iPhone.Build.0 = Release|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5D4D499E-24CB-4E8C-A3A8-995F59209224}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Release|iPhone.Build.0 = Release|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C6B3498D-B4F9-4179-8DE0-BA3A3FD6C8AF}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Release|iPhone.Build.0 = Release|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{2FC58A97-44EC-441A-94E5-8E923FF3E69E}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Release|iPhone.Build.0 = Release|iPhone
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{35C4BC79-27BF-4236-8C40-E4FEDF1D4E9E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Release|iPhone.Build.0 = Release|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4DC98129-CA62-4C09-A41D-7009324B199F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Release|iPhone.Build.0 = Release|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CA9C66F9-D765-461E-B95F-98C19E0DBA85}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Release|iPhone.Build.0 = Release|iPhone
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CC3980E3-7668-4E8C-9A9E-8A40D92DF789}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Release|iPhone.Build.0 = Release|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4398EFA2-C4D7-4960-BF75-57A38A7EF4B0}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Release|iPhone.Build.0 = Release|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E4E00680-D4A3-4985-9DD0-DF30540FFBB4}.Debug|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{780561B2-014C-4628-B399-0EF1D77138BC} = {53E9A30D-6A27-40C9-AB5E-0439F34B6596}
+	EndGlobalSection
+EndGlobal

@@ -14,13 +14,6 @@ namespace MASXamarinFormsDemo
         {
             InitializeComponent();
 
-            // Uncomment this once you have things wired up, and kill the mock service.
-            /*
-            // Get an instance of the Idea Service for the platform we're on.
-            IdeaService = DependencyService.Get<IIdeaService<Idea>>();
-            */
-            IdeaService = new MockIdeaService(); // and then uncomment this, since we're using the real thing
-
             // Kick off the UI.
             MainPage = new MainPage();
         }

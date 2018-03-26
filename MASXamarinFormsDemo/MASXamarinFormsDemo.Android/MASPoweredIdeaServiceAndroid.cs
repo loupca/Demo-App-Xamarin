@@ -1,34 +1,109 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Com.CA.Mas.Foundation;
 using MASXamarinFormsDemo.Droid;
 using MASXamarinFormsDemo.Models;
 using MASXamarinFormsDemo.Services;
-using Xamarin.Forms;
+using MASXamarinFormsDemo.Exceptions;
+using MASXamarinFormsDemo.Models.JsonResponse;
+using Newtonsoft.Json;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MASPoweredIdeaServiceAndroid))]
 namespace MASXamarinFormsDemo.Droid
 {
-    class MASPoweredIdeaServiceAndroid : IIdeaService<Idea>
+    public class MASPoweredIdeaServiceAndroid : IIdeaService<Idea>
     {
+
+        #region Constructor and Class Vars
+
+        /// <summary>
+        /// Instance of the App's Main Activity.
+        /// </summary>
+        private readonly MainActivity _mainActivity;
+
+        public MASPoweredIdeaServiceAndroid(MainActivity mainActivity)
+        {
+            _mainActivity = mainActivity;
+
+            // Attempt to start MAS SDK.
+            if (!StartSdkWithNonDefaultConfig()) throw new CouldNotStartMasException();
+        }
+
+        #endregion
+
         #region Interface Required Functions
 
         /// <inheritdoc />
-        public bool IsAuthenticated { get; set; }
+        public bool IsAuthenticated => MASUser.CurrentUser != null;
 
         /// <inheritdoc />
-        public Task<bool> LogOut()
+        public async Task<bool> LogIn()
         {
-            throw new NotImplementedException();
+            var funcName = "LogOut";
+
+            try
+            {
+                // Check if user is already authenticated
+                if (IsAuthenticated) return true;
+
+                // Used only to trigger authentication with no callback
+                MASUser.Login(null);
+
+                return IsAuthenticated;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
+
+        }
+
+        /// <inheritdoc />
+        public async Task<bool> LogOut()
+        {
+            var funcName = "LogOut";
+
+            try
+            {
+                // Check if user is already authenticated
+                if (IsAuthenticated)
+                {
+                    MASUser.CurrentUser.Logout(null);
+                    return true;
+                }
+
+                return true; // already logged in
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
+        }
+
+        /// <inheritdoc />
+        public async Task<string> GetCurrentUserName()
+        {
+            var funcName = "GetCurrentUserName";
+
+            try
+            {
+                // Check if user is already authenticated
+                if (IsAuthenticated)
+                {
+                    return MASUser.CurrentUser.DisplayName;
+                }
+
+                return null; // already logged in
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return null;
+            }
         }
 
         /// <inheritdoc />
@@ -50,15 +125,123 @@ namespace MASXamarinFormsDemo.Droid
         }
 
         /// <inheritdoc />
-        public Task<Idea> GetIdeaAsync(string id)
+        public async Task<Idea> GetIdeaAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var funcName = "GetIdeaAsync";
+
+            try
+            {
+                return new Idea();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return new Idea();
+            }
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<Idea>> GetIdeasAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Idea>> GetIdeasAsync(bool forceRefresh = false)
         {
-            throw new NotImplementedException();
+            var funcName = "GetIdeasAsync";
+
+            try
+            {
+                MAS.Debug();
+
+                // Use Uri.Builder() to build the Uri and pass it into a MASRequestBuilder.
+                var uriBuilder = new Android.Net.Uri.Builder();
+
+                // Append the endpoint path.
+                uriBuilder.AppendEncodedPath("ideas");
+
+                // Create the request builder.
+                var builder = new MASRequestBuilder(uriBuilder.Build());
+
+                // Set the response type to JSON.
+                builder.ResponseBody(MASResponseBody.JsonBody());
+
+                // Invoke the API.
+                var request = builder.Build();
+                var result = await MAS.Invoke(request);
+
+                // Make sure we received an OK/200 response.
+                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+                    return new List<Idea>()
+                    {
+                        new Idea { Id = Guid.NewGuid(), Summary = "Could not read data from endpoint.", Title = "Error" }
+                    };
+
+                var serverResponse = JsonConvert.DeserializeObject<List<IdeaListResponseJson>>(Encoding.UTF8.GetString(result.Body.GetRawContent()));
+
+                return serverResponse.Select(item => new Idea
+                {
+                    Id = item.Id,
+                    Title = item.Title,
+                    Summary = item.Description
+                }).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return new List<Idea>();
+            }
+
+        }
+
+
+        #endregion
+
+        #region SDK Configuration Functions
+
+        /// <summary>
+        /// Start SDK with default after changing the default configuration file
+        /// </summary>
+        /// <param name="activity"></param>
+        public bool StartSdkWithNonDefaultConfig()
+        {
+            var funcName = "StartSDKChangeDefaultConfig";
+
+            try
+            {
+                if (IsSdkInitialized(_mainActivity)) return true;
+                
+                // Change the default Configuration
+                // Example: MAS.SetConfigurationFileName("custom.json");
+                MAS.SetConfigurationFileName("msso_config_public.json");
+
+                // Set the credential flow.
+                MAS.SetGrantFlow(MASConstants.MasGrantFlowClientCredentials);
+
+                // Usage: MAS.Start(Context context, bool shouldUseDefault);
+                MAS.Start(_mainActivity, true);
+
+                return IsSdkInitialized(_mainActivity);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{funcName}(): CA Mobile SDK could not start. Exception was: {ex.GetBaseException().Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Return whether the SDK is Initialized.
+        /// </summary>
+        /// <param name="activity"></param>
+        public static bool IsSdkInitialized(MainActivity activity)
+        {
+            var funcName = "IsSdkInitialized";
+
+            if (MAS.GetState(activity.ApplicationContext) == MASConstants.MasStateStarted)
+            {
+                Console.WriteLine($"{funcName}(): CA Mobile SDK started successfully!!");
+                return true;
+            }
+
+            Console.WriteLine($"{funcName}(): CA Mobile SDK could not start!!");
+            return false;
         }
 
         #endregion

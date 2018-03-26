@@ -23,12 +23,12 @@ namespace MASXamarinFormsDemo.Services
         {
             var mockItems = new List<Idea>
             {
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "The Computer", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "The Copernican Revolution", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "The Onion", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "Relativity", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "Quantum Theory", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid().ToString(), Title = "Virtual Reality", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "The Computer", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "The Copernican Revolution", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "The Onion", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Relativity", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Quantum Theory", Summary = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Virtual Reality", Summary = "What a great idea!" }
             };
 
             foreach (var item in mockItems)
@@ -38,6 +38,11 @@ namespace MASXamarinFormsDemo.Services
         }
 
         #region Interface Required Items
+
+        public async Task<string> GetCurrentUserName()
+        {
+            return "John Q. Public";
+        }
 
         /// <inheritdoc />
         public async Task<bool> AddIdeaAsync(Idea idea)
@@ -67,7 +72,7 @@ namespace MASXamarinFormsDemo.Services
         }
 
         /// <inheritdoc />
-        public async Task<Idea> GetIdeaAsync(string id)
+        public async Task<Idea> GetIdeaAsync(Guid id)
         {
             return await Task.FromResult(_ideas.FirstOrDefault(s => s.Id == id));
         }
@@ -80,6 +85,12 @@ namespace MASXamarinFormsDemo.Services
 
         /// <inheritdoc />
         public bool IsAuthenticated { get; set; } = false;
+
+        /// <inheritdoc />
+        public async Task<bool> LogIn()
+        {
+            return true;
+        }
 
         /// <inheritdoc />
         public async Task<bool> LogOut()

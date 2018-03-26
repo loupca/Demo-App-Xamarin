@@ -41,7 +41,7 @@ namespace MASXamarinFormsDemo.ViewModels
             try
             {
                 Ideas.Clear();
-                var items = await IdeaService.GetIdeasAsync(true);
+                var items = await IdeaService.GetIdeasAsync(true).ConfigureAwait(false);
                 foreach (var item in items)
                 {
                     Ideas.Add(item);

@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.Views;
 using Android.OS;
+using MASXamarinFormsDemo.Exceptions;
 
 namespace MASXamarinFormsDemo.Droid
 {
@@ -15,15 +16,31 @@ namespace MASXamarinFormsDemo.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             // Swap back to the normal app theme.
-            base.Window.RequestFeature(WindowFeatures.ActionBar);
-            base.SetTheme(Resource.Style.MainTheme);
+            Window.RequestFeature(WindowFeatures.ActionBar);
+            SetTheme(Resource.Style.MainTheme);
 
             // Finish the Android activity startup process.
             base.OnCreate(bundle);
 
             // Hand control over to Xamarin.Forms.
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            try
+            {
+                global::Xamarin.Forms.Forms.Init(this, bundle);
+                App.IdeaService = new MASPoweredIdeaServiceAndroid(this);
+            }
+            catch (CouldNotStartMasException ex)
+            {
+                // Show an alert if we couldn't start MAS.                
+                var alert = new AlertDialog.Builder(this);
+                alert.SetTitle("Error");
+                alert.SetMessage("MAS could not be started. Is it configured properly?");
+                var dialog = alert.Create();
+                dialog.Show();
+                return;
+            }
+
             LoadApplication(new App());
+
         }
     }
 }
