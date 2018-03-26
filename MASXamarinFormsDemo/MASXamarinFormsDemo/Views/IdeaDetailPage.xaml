@@ -8,5 +8,7 @@
         <Label Text="{Binding Idea.Title}" FontSize="Small"/>
         <Label Text="Summary:" FontSize="Medium" />
         <Label Text="{Binding Idea.Summary}" FontSize="Small"/>
+        <Label Text="Summary:" FontSize="Medium" />
+        <Label Text="{Binding Idea.Department}" FontSize="Small"/>
     </StackLayout>
 </ContentPage>

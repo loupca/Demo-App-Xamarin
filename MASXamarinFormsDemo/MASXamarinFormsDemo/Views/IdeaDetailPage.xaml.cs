@@ -11,27 +11,24 @@ namespace MASXamarinFormsDemo.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class IdeaDetailPage : ContentPage
 	{
-        ItemDetailViewModel viewModel;
+        public Idea Idea;
 
-        public IdeaDetailPage(ItemDetailViewModel viewModel)
+        public IdeaDetailPage(Idea idea)
         {
             InitializeComponent();
-
-            BindingContext = this.viewModel = viewModel;
+            Idea = idea;
+            BindingContext = this;
+            SetupUi();
         }
 
-        public IdeaDetailPage()
-        {
-            InitializeComponent();
+	    private void SetupUi()
+	    {
+            // Wire-up the edit button.
+            ToolbarItems.Add(new ToolbarItem("Edit", null, async () =>
+                {
+                    await Navigation.PushAsync(new ItemEditorPage(Idea));
+                }));
+	    }
 
-            var item = new Idea
-            {
-                Title = "Idea Title",
-                Summary = "Description of the idea."
-            };
-
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
-        }
     }
 }

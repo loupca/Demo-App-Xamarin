@@ -23,7 +23,7 @@ namespace MASXamarinFormsDemo.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             // Subscribe to changes in the Ideas list.
-            MessagingCenter.Subscribe<NewItemPage, Idea>(this, "AddIdea", async (obj, item) =>
+            MessagingCenter.Subscribe<ItemEditorPage, Idea>(this, "AddIdea", async (obj, item) =>
             {
                 var _item = item as Idea;
                 Ideas.Add(_item);

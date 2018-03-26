@@ -156,15 +156,91 @@ namespace MASXamarinFormsDemo.Droid
         }
 
         /// <inheritdoc />
-        public Task<bool> UpdateIdeaAsync(Idea item)
+        public async Task<bool> UpdateIdeaAsync(Idea item)
         {
-            throw new NotImplementedException();
+            var funcName = "UpdateIdeaAsync";
+
+            try
+            {
+                // Enable debugging.
+                MAS.Debug();
+
+                // Use Uri.Builder() to build the Uri and pass it into a MASRequestBuilder.
+                var uriBuilder = new Android.Net.Uri.Builder();
+
+                // Append the endpoint path.
+                uriBuilder.AppendEncodedPath($"ideas/{item.Id}");
+
+                // Create the request builder.
+                var builder = new MASRequestBuilder(uriBuilder.Build());
+
+                // Build the new Idea object.
+                var json = JsonConvert.SerializeObject(new IdeaCreateRequestJson
+                {
+                    Title = item.Title,
+                    Description = item.Summary,
+                    Department = item.Department
+                });
+
+                // Set the response type to JSON.
+                builder.ResponseBody(MASResponseBody.JsonBody());
+                builder.Put(MASRequestBody.JsonBody(new JSONObject(json))); // We're updating, so mark as PUT. Default is GET.
+
+                // Invoke the API.
+                var request = builder.Build();
+                var result = await MAS.Invoke(request);
+
+                // Make sure we received an OK/200 response.
+                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteIdeaAsync(Idea item)
+        public async Task<bool> DeleteIdeaAsync(Idea item)
         {
-            throw new NotImplementedException();
+            var funcName = "UpdateIdeaAsync";
+
+            try
+            {
+                // Enable debugging.
+                MAS.Debug();
+
+                // Use Uri.Builder() to build the Uri and pass it into a MASRequestBuilder.
+                var uriBuilder = new Android.Net.Uri.Builder();
+
+                // Append the endpoint path.
+                uriBuilder.AppendEncodedPath($"ideas/{item.Id}");
+
+                // Create the request builder.
+                var builder = new MASRequestBuilder(uriBuilder.Build());
+
+                // Set the response type to JSON.
+                builder.ResponseBody(MASResponseBody.JsonBody());
+                builder.Delete(null); // We're deleting, so mark as DELETE. Default is GET.
+
+                // Invoke the API.
+                var request = builder.Build();
+                var result = await MAS.Invoke(request);
+
+                // Make sure we received an OK/200 response.
+                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
         }
 
         /// <inheritdoc />

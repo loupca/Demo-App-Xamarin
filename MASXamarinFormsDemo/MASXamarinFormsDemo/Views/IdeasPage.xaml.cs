@@ -26,7 +26,7 @@ namespace MASXamarinFormsDemo.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new IdeaDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new IdeaDetailPage(item));
 
             // Manually deselect item so it doesn't stay selected.
             IdeasListView.SelectedItem = null;
@@ -34,7 +34,7 @@ namespace MASXamarinFormsDemo.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new ItemEditorPage(/* null creates a new Idea */)));
         }
 
         protected override void OnAppearing()

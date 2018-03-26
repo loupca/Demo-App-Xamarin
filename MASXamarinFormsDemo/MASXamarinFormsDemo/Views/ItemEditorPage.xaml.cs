@@ -9,14 +9,16 @@ using MASXamarinFormsDemo.Models;
 namespace MASXamarinFormsDemo.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewItemPage : ContentPage
+    public partial class ItemEditorPage : ContentPage
     {
         public Idea Idea { get; set; }
+        public bool IsEditing = false;
 
-        public NewItemPage()
+        public ItemEditorPage(Idea idea = null)
         {
             InitializeComponent();
-            Idea = new Idea(); // don't want to bind to null :)
+            IsEditing = idea != null; // determine if we're editing
+            Idea = idea ?? new Idea(); // don't want to bind to null :)
             BindingContext = this;
         }
 
@@ -35,9 +37,18 @@ namespace MASXamarinFormsDemo.Views
             }
 
             // Attempt to save in service.
-            await DisplayAlert("Info", await App.IdeaService.AddIdeaAsync(Idea) 
-                ? "Sample idea added!" 
-                : "Couldn't add the idea.", "OK");
+            if (IsEditing)
+            {
+                await DisplayAlert("Info", await App.IdeaService.UpdateIdeaAsync(Idea)
+                    ? "Idea updated!"
+                    : "Couldn't update the idea.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Info", await App.IdeaService.AddIdeaAsync(Idea)
+                    ? "Idea added!"
+                    : "Couldn't add the idea.", "OK");
+            }
 
             // Send message to update subscribers.
             MessagingCenter.Send(this, "AddItem", Idea);
