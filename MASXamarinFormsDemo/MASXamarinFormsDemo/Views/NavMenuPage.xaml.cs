@@ -4,28 +4,63 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using MASXamarinFormsDemo.Models;
+using MASXamarinFormsDemo.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MenuItem = MASXamarinFormsDemo.Models.MenuItem;
 
 namespace MASXamarinFormsDemo.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavMenuPage : ContentPage
     {
-        public ObservableCollection<Models.MenuItem> Items { get; set; }
+        public ObservableCollection<Models.MenuItem> Items { get; set; } = new ObservableCollection<MenuItem>();
+
+        private NavMenuPage PageInstance;
 
         public NavMenuPage()
         {
             Title = "MAS Ideas Sample App";
             InitializeComponent();
+            BindingContext = this;
+            SetupUi();
+        }
 
-            Items = new ObservableCollection<Models.MenuItem>
+        void SetupUi()
+        {
+            // Subscribe to auth changes.
+            MessagingCenter.Subscribe<IIdeaService<Idea>, string>(this, "AuthChanged", (sender, message) =>
+     {
+         UpdateLoginDisplay();
+     });
+
+            // Update the logged-in status UI.
+            UpdateLoginDisplay();
+        }
+
+        async void UpdateLoginDisplay()
+        {
+            if (App.IdeaService.IsAuthenticated)
             {
-                new Models.MenuItem() { ImageFilename = "icon_home", Text = "Home" },
-                new Models.MenuItem() { ImageFilename = "icon_logout", Text = "Log Out" }
-            };
-			
-			MyListView.ItemsSource = Items;
+                lblUsername.IsVisible = true;
+                lblUsername.Text = await App.IdeaService.GetCurrentUserName();
+                lblLoginStatus.TextColor = Color.Green;
+                lblLoginStatus.Text = "Logged In";
+
+                Items.Clear();
+                Items.Add(new Models.MenuItem() { ImageFilename = "icon_home", Text = "Home" });
+                Items.Add(new Models.MenuItem() { ImageFilename = "icon_logout", Text = "Log Out" });
+            }
+            else
+            {
+                lblUsername.IsVisible = false;
+                lblLoginStatus.TextColor = Color.DarkRed;
+                lblLoginStatus.Text = "Not Logged In";
+
+                Items.Clear();
+                Items.Add(new Models.MenuItem() { ImageFilename = "icon_home", Text = "Home" });
+                Items.Add(new Models.MenuItem() { ImageFilename = "icon_login", Text = "Log In" });
+            }
         }
 
         /// <summary>
@@ -46,6 +81,9 @@ namespace MASXamarinFormsDemo.Views
                 case "Log Out":
                     var success = await App.IdeaService.LogOut();
                     await DisplayAlert("Info", await App.IdeaService.LogOut() ? "You've been logged out." : "Couldn't log you out.", "OK");
+                    break;
+                case "Log In":
+                    await Utility.EnsureLoggedIn(this, false);
                     break;
             }
 

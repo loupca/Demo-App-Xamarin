@@ -8,9 +8,9 @@ using MASXamarinFormsDemo.ViewModels;
 
 namespace MASXamarinFormsDemo.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class IdeasPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class IdeasPage : ContentPage
+    {
         readonly IdeasViewModel _viewModel;
 
         public IdeasPage()
@@ -20,16 +20,18 @@ namespace MASXamarinFormsDemo.Views
             BindingContext = _viewModel = new IdeasViewModel();
         }
 
+        #region Event Handlers
+
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as Idea;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new IdeaDetailPage(item));
-
             // Manually deselect item so it doesn't stay selected.
             IdeasListView.SelectedItem = null;
+
+            await Navigation.PushAsync(new IdeaDetailPage(item));
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -40,9 +42,10 @@ namespace MASXamarinFormsDemo.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (_viewModel.Ideas.Count == 0)
-                _viewModel.LoadItemsCommand.Execute(null);
+            _viewModel.LoadItemsCommand.Execute(null);
         }
+
+        #endregion
+
     }
 }

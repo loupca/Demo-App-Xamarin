@@ -15,6 +15,7 @@ namespace MASXamarinFormsDemo.ViewModels
         public IIdeaService<Idea> IdeaService = App.IdeaService;
 
         bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }

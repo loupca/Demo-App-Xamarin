@@ -23,12 +23,12 @@ namespace MASXamarinFormsDemo.Services
         {
             var mockItems = new List<Idea>
             {
-                new Idea { Id = Guid.NewGuid(), Title = "The Computer", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid(), Title = "The Copernican Revolution", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid(), Title = "The Onion", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid(), Title = "Relativity", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid(), Title = "Quantum Theory", Summary = "What a great idea!" },
-                new Idea { Id = Guid.NewGuid(), Title = "Virtual Reality", Summary = "What a great idea!" }
+                new Idea { Id = Guid.NewGuid(), Title = "The Computer", Description = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "The Copernican Revolution", Description = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "The Onion", Description = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Relativity", Description = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Quantum Theory", Description = "What a great idea!" },
+                new Idea { Id = Guid.NewGuid(), Title = "Virtual Reality", Description = "What a great idea!" }
             };
 
             foreach (var item in mockItems)

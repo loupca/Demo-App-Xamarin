@@ -11,6 +11,7 @@ using MASXamarinFormsDemo.Exceptions;
 using MASXamarinFormsDemo.Models.JsonResponse;
 using Newtonsoft.Json;
 using Org.Json;
+using Xamarin.Forms;
 
 namespace MASXamarinFormsDemo.Droid
 {
@@ -51,7 +52,6 @@ namespace MASXamarinFormsDemo.Droid
                 var callback = new LoginCallback();
                 MASUser.Login(username, password.ToCharArray(), callback);
 
-
                 const int MAX_TRIES = 10;
                 var tries = 0;
                 while (!IsAuthenticated && tries < MAX_TRIES && !callback.LoginErrorOccurred) // wait for a login to occur
@@ -60,11 +60,15 @@ namespace MASXamarinFormsDemo.Droid
                     tries++;
                 }
 
+                // Notify the application of status.
+                App.RaiseAuthChanged();
+
                 return IsAuthenticated;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                Console.WriteLine($@"Error in {funcName}(): {ex.GetBaseException().Message}");
+                App.RaiseAuthChanged();
                 return false;
             }
 
@@ -81,6 +85,7 @@ namespace MASXamarinFormsDemo.Droid
                 if (IsAuthenticated)
                 {
                     MASUser.CurrentUser.Logout(null);
+                    App.RaiseAuthChanged();
                     return true;
                 }
 
@@ -88,7 +93,8 @@ namespace MASXamarinFormsDemo.Droid
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                Console.WriteLine($@"Error in {funcName}(): {ex.GetBaseException().Message}");
+                App.RaiseAuthChanged();
                 return false;
             }
         }
@@ -103,14 +109,14 @@ namespace MASXamarinFormsDemo.Droid
                 // Check if user is already authenticated
                 if (IsAuthenticated)
                 {
-                    return MASUser.CurrentUser.DisplayName;
+                    return MASUser.CurrentUser.Id ?? "n/a";
                 }
 
                 return null; // already logged in
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                Console.WriteLine($@"Error in {funcName}(): {ex.GetBaseException().Message}");
                 return null;
             }
         }
@@ -138,7 +144,7 @@ namespace MASXamarinFormsDemo.Droid
                 var json = JsonConvert.SerializeObject(new IdeaCreateRequestJson
                 {
                     Title = item.Title,
-                    Description = item.Summary,
+                    Description = item.Description,
                     Department = item.Department
                 });
 
@@ -150,15 +156,12 @@ namespace MASXamarinFormsDemo.Droid
                 var request = builder.Build();
                 var result = await MAS.Invoke(request);
 
-                // Make sure we received an OK/200 response.
-                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
-                    return true;
-
-                return false;
+                // Make sure we received an Created/201 response.
+                return result.ResponseMessage.Equals("Created", StringComparison.InvariantCultureIgnoreCase);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                Console.WriteLine($@"Error in {funcName}(): {ex.GetBaseException().Message}");
                 return false;
             }
         }
@@ -186,7 +189,7 @@ namespace MASXamarinFormsDemo.Droid
                 var json = JsonConvert.SerializeObject(new IdeaCreateRequestJson
                 {
                     Title = item.Title,
-                    Description = item.Summary,
+                    Description = item.Description,
                     Department = item.Department
                 });
 
@@ -199,10 +202,7 @@ namespace MASXamarinFormsDemo.Droid
                 var result = await MAS.Invoke(request);
 
                 // Make sure we received an OK/200 response.
-                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
-                    return true;
-
-                return false;
+                return result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase);
             }
             catch (Exception ex)
             {
@@ -214,7 +214,7 @@ namespace MASXamarinFormsDemo.Droid
         /// <inheritdoc />
         public async Task<bool> DeleteIdeaAsync(Idea item)
         {
-            var funcName = "UpdateIdeaAsync";
+            var funcName = "DeleteIdeaAsync";
 
             try
             {
@@ -239,14 +239,11 @@ namespace MASXamarinFormsDemo.Droid
                 var result = await MAS.Invoke(request);
 
                 // Make sure we received an OK/200 response.
-                if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
-                    return true;
-
-                return false;
+                return result.ResponseMessage.Equals("No Content", StringComparison.InvariantCultureIgnoreCase);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                Console.WriteLine($@"Error in {funcName}(): {ex.GetBaseException().Message}");
                 return false;
             }
         }
@@ -296,16 +293,18 @@ namespace MASXamarinFormsDemo.Droid
                 if (!result.ResponseMessage.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
                     return new List<Idea>()
                     {
-                        new Idea { Id = Guid.NewGuid(), Summary = "Could not read data from endpoint.", Title = "Error" }
+                        new Idea { Id = Guid.NewGuid(), Description = "Could not read data from endpoint.", Title = "Error" }
                     };
 
-                var serverResponse = JsonConvert.DeserializeObject<List<IdeaListResponseJson>>(Encoding.UTF8.GetString(result.Body.GetRawContent()));
+                var json = Encoding.UTF8.GetString(result.Body.GetRawContent());
+                var serverResponse = JsonConvert.DeserializeObject<List<IdeaListResponseJson>>(json);
 
                 return serverResponse.Select(item => new Idea
                 {
                     Id = item.Id,
                     Title = item.Title,
-                    Summary = item.Description
+                    Description = item.Description,
+                    Department = item.Department
                 }).ToList();
 
             }

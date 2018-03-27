@@ -4,24 +4,31 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="MASXamarinFormsDemo.Views.NavMenuPage"
              >
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-                
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-            <ff:CachedImage Source="{Binding ImageFilename}" Aspect="AspectFit" WidthRequest="35"/>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" 
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center"
-                   />
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>
+    <StackLayout x:Name="UserInfo" VerticalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <ff:CachedImage Source="icon_avatar" Aspect="AspectFit" WidthRequest="60"/>
+            <Label x:Name="lblUsername" FontSize="Medium" HorizontalOptions="FillAndExpand" />
+            <Label x:Name="lblLoginStatus" FontSize="Small" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <ListView x:Name="lvwNav"
+                ItemsSource="{Binding Items}"
+                ItemTapped="Handle_ItemTapped"
+                CachingStrategy="RecycleElement"
+                  Margin="0, 10, 0, 10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <ff:CachedImage Source="{Binding ImageFilename}" Aspect="AspectFit" WidthRequest="35"/>
+                            <Label Text="{Binding Text}" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
 </ContentPage>

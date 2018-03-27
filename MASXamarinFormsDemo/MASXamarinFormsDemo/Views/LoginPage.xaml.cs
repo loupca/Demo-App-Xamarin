@@ -35,7 +35,7 @@ namespace MASXamarinFormsDemo.Views
             if (string.IsNullOrWhiteSpace(tbxUsername.Text) ||
                 string.IsNullOrWhiteSpace(tbxPassword.Text))
             {
-                await DisplayAlert("Error", "Please enter a username and password.", "OK");
+                await DisplayAlert(Strings.AlertTitle_Error, "Please enter a username and password.", Strings.Button_OK);
                 return;
             }
 
@@ -48,12 +48,12 @@ namespace MASXamarinFormsDemo.Views
                     var loginSuccessful = task.Result;
                     if (loginSuccessful)
                     {
-                        await DisplayAlert("Info", "Login successful.", "OK");
+                        await DisplayAlert(Strings.AlertTitle_Info, "Login successful.", Strings.Button_OK);
                         await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Error occurred logging in. Check your credentials and network connectivity.", "OK");
+                        await DisplayAlert(Strings.AlertTitle_Error, "Error occurred logging in. Check your credentials and network connectivity.", Strings.Button_OK);
                     }
 
                     ToggleUi(true);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -22,13 +23,23 @@ namespace MASXamarinFormsDemo.ViewModels
             Ideas = new ObservableCollection<Idea>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            // Subscribe to changes in the Ideas list.
-            MessagingCenter.Subscribe<ItemEditorPage, Idea>(this, "AddIdea", async (obj, item) =>
+            // Subscribe to additions in the Ideas list.
+            MessagingCenter.Subscribe<ItemEditorPage, Idea>(this, "AddItem", async (obj, item) =>
             {
-                var _item = item as Idea;
+                var _item = item;
                 Ideas.Add(_item);
-                await IdeaService.AddIdeaAsync(_item);
             });
+
+            // Subscribe to updates in the Ideas list.
+            MessagingCenter.Subscribe<ItemEditorPage, Idea>(this, "UpdateItem", async (obj, item) =>
+            {
+                var _item = item;
+                var idea = Ideas.First(i => i == _item);
+                idea.Title = _item.Description;
+                idea.Department = _item.Department;
+                idea.Description = _item.Description;
+            });
+
         }
 
         async Task ExecuteLoadItemsCommand()

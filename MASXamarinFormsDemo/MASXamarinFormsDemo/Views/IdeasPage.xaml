@@ -9,6 +9,23 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout Padding="10,10,10,0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label 
+                        Text="Title" 
+                        HorizontalTextAlignment="Start"
+                        Style="{DynamicResource ListItemTextStyle}" 
+                        FontAttributes="Bold"
+                        FontSize="13" />
+                    <Label 
+                        Text="Department"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="End"
+                        Style="{DynamicResource ListItemTextStyle}" 
+                        FontAttributes="Bold"
+                        FontSize="13" />
+                </StackLayout>
+            </StackLayout>
             <ListView x:Name="IdeasListView" 
                 ItemsSource="{Binding Ideas}"
                 VerticalOptions="FillAndExpand"
@@ -22,11 +39,18 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Text="{Binding Title}" 
-                                   LineBreakMode="NoWrap" 
-                                   Style="{DynamicResource ListItemTextStyle}" 
-                                   FontSize="16" />
-                                <Label Text="{Binding Summary}" 
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Title}" 
+                                           HorizontalTextAlignment="Start"
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="16" />
+                                    <Label Text="{Binding Department}" 
+                                           HorizontalOptions="FillAndExpand"
+                                           HorizontalTextAlignment="End"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                </StackLayout>
+                                <Label Text="{Binding Description}" 
                                    LineBreakMode="NoWrap"
                                    Style="{DynamicResource ListItemDetailTextStyle}"
                                    FontSize="13" />

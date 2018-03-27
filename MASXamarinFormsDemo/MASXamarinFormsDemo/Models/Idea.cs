@@ -11,8 +11,8 @@ namespace MASXamarinFormsDemo.Models
 
         public string Title { get; set; }
 
-        public string Summary { get; set; }
+        public string Description { get; set; }
 
-        public string Department{ get; set; }
+        public string Department { get; set; }
     }
 }

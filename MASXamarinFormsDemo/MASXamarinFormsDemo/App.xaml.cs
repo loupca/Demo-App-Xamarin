@@ -14,13 +14,13 @@ namespace MASXamarinFormsDemo
         {
             InitializeComponent();
 
-            // By default, for demo purposes, we'll log the current user out. 
-            // Feel free to remove if you want the credentials saved between
-            // app launches.
-            IdeaService.LogOut();
-
             // Kick off the UI.
             MainPage = new MainPage();
+        }
+
+        public static void RaiseAuthChanged()
+        {
+            MessagingCenter.Send(IdeaService, "AuthChanged", "stub");
         }
 
         protected override void OnStart()
