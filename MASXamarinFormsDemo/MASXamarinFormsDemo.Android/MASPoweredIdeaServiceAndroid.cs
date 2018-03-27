@@ -48,9 +48,17 @@ namespace MASXamarinFormsDemo.Droid
             {
                 // Check if user is already authenticated
                 if (IsAuthenticated) return true;
+                var callback = new LoginCallback();
+                MASUser.Login(username, password.ToCharArray(), callback);
 
-                // Used only to trigger authentication with no callback
-                MASUser.Login(username, password.ToCharArray(), null);
+
+                const int MAX_TRIES = 10;
+                var tries = 0;
+                while (!IsAuthenticated && tries < MAX_TRIES && !callback.LoginErrorOccurred) // wait for a login to occur
+                {
+                    await Task.Delay(250); // check for login success
+                    tries++;
+                }
 
                 return IsAuthenticated;
             }

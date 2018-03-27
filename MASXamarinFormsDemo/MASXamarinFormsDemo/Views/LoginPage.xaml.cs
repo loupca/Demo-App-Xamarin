@@ -41,21 +41,24 @@ namespace MASXamarinFormsDemo.Views
 
             ToggleUi(false);
 
-            var loginSuccessful = await App.IdeaService
+            await App.IdeaService
                 .LogIn(tbxUsername.Text, tbxPassword.Text)
-                .ConfigureAwait(false);
+                .ContinueWith(async (task) =>
+                {
+                    var loginSuccessful = task.Result;
+                    if (loginSuccessful)
+                    {
+                        await DisplayAlert("Info", "Login successful.", "OK");
+                        await Navigation.PopModalAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Error occurred logging in. Check your credentials and network connectivity.", "OK");
+                    }
 
-            if (loginSuccessful)
-            {
-                await DisplayAlert("Info", "Login successful!", "OK");
-                await Navigation.PopModalAsync();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Error occurred logging in. Check your credentials and network connectivity.", "OK");
-            }
+                    ToggleUi(true);
+                }, TaskScheduler.FromCurrentSynchronizationContext());
 
-            ToggleUi(true);
         }
     }
 }
