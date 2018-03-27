@@ -15,48 +15,81 @@ namespace MASXamarinFormsDemo.iOS
         /// <inheritdoc />
         public bool IsAuthenticated { get; set; }
 
-        public Task<bool> LogIn()
+        public async Task<bool> LogIn(string username, string password)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public Task<bool> LogOut()
+        public async Task<bool> LogOut()
         {
-            throw new NotImplementedException();
+            var funcName = "LogOut";
+
+            try
+            {
+                // Check if user is already authenticated
+                if (IsAuthenticated)
+                {
+                    MASUser.CurrentUser.Logout(null);
+                    return true;
+                }
+
+                return true; // already logged in
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return false;
+            }
         }
 
-        public Task<string> GetCurrentUserName()
+        public async Task<string> GetCurrentUserName()
+        {
+            var funcName = "GetCurrentUserName";
+
+            try
+            {
+                // Check if user is already authenticated
+                if (IsAuthenticated)
+                {
+                    return MASUser.CurrentUser.DisplayName;
+                }
+
+                return null; // already logged in
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in {funcName}(): {ex.GetBaseException().Message}");
+                return null;
+            }
+        }
+
+        /// <inheritdoc />
+        public async Task<bool> AddIdeaAsync(Idea item)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public Task<bool> AddIdeaAsync(Idea item)
+        public async Task<bool> UpdateIdeaAsync(Idea item)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public Task<bool> UpdateIdeaAsync(Idea item)
+        public async Task<bool> DeleteIdeaAsync(Idea item)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteIdeaAsync(Idea item)
+        public async Task<Idea> GetIdeaAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
-        public Task<Idea> GetIdeaAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc />
-        public Task<IEnumerable<Idea>> GetIdeasAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Idea>> GetIdeasAsync(bool forceRefresh = false)
         {
             throw new NotImplementedException();
         }

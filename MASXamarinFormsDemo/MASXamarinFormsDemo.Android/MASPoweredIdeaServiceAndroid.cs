@@ -40,7 +40,7 @@ namespace MASXamarinFormsDemo.Droid
         public bool IsAuthenticated => MASUser.CurrentUser?.IsAuthenticated ?? false;
 
         /// <inheritdoc />
-        public async Task<bool> LogIn()
+        public async Task<bool> LogIn(string username, string password)
         {
             var funcName = "LogIn";
 
@@ -50,7 +50,7 @@ namespace MASXamarinFormsDemo.Droid
                 if (IsAuthenticated) return true;
 
                 // Used only to trigger authentication with no callback
-                MASUser.Login(null);
+                MASUser.Login(username, password.ToCharArray(), null);
 
                 return IsAuthenticated;
             }

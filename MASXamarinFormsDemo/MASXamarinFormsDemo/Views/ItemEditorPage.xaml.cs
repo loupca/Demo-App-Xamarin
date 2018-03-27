@@ -25,14 +25,24 @@ namespace MASXamarinFormsDemo.Views
         async void Save_Clicked(object sender, EventArgs e)
         {
             // Make sure they entered everything that's required.
-            if (string.IsNullOrWhiteSpace(Idea.Title) || 
+            if (string.IsNullOrWhiteSpace(Idea.Title) ||
                 string.IsNullOrWhiteSpace(Idea.Summary) ||
                 string.IsNullOrWhiteSpace(Idea.Department))
             {
                 await DisplayAlert(
-                    "Error", 
-                    "Title, Summary, and Department are required.", 
+                    "Error",
+                    "Title, Summary, and Department are required.",
                     "OK");
+                return;
+            }
+
+            // Make sure they're logged in.
+            if (!App.IdeaService.IsAuthenticated)
+            {
+                await DisplayAlert("Info",
+                    "Couldn't save idea. You must log in first.",
+                    "OK");
+                await Navigation.PushModalAsync(new LoginPage());
                 return;
             }
 

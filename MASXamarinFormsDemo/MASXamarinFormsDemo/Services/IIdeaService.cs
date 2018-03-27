@@ -14,7 +14,7 @@ namespace MASXamarinFormsDemo.Services
         /// <summary>
         /// Logs the user in. If the user is already logged in, True will be returned.
         /// </summary>
-        Task<bool> LogIn();
+        Task<bool> LogIn(string username, string password);
 
         /// <summary>
         /// Logs the user out. If the user is not logged in, True will be returned.

@@ -87,7 +87,7 @@ namespace MASXamarinFormsDemo.Services
         public bool IsAuthenticated { get; set; } = false;
 
         /// <inheritdoc />
-        public async Task<bool> LogIn()
+        public async Task<bool> LogIn(string username, string password)
         {
             return true;
         }
