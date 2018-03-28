@@ -48,7 +48,6 @@ namespace MASXamarinFormsDemo.Views
                 lblLoginStatus.Text = "Logged In";
 
                 Items.Clear();
-                Items.Add(new Models.MenuItem() { ImageFilename = "icon_home", Text = "Home" });
                 Items.Add(new Models.MenuItem() { ImageFilename = "icon_logout", Text = "Log Out" });
             }
             else
@@ -58,7 +57,6 @@ namespace MASXamarinFormsDemo.Views
                 lblLoginStatus.Text = "Not Logged In";
 
                 Items.Clear();
-                Items.Add(new Models.MenuItem() { ImageFilename = "icon_home", Text = "Home" });
                 Items.Add(new Models.MenuItem() { ImageFilename = "icon_login", Text = "Log In" });
             }
         }

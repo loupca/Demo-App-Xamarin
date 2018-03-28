@@ -36,7 +36,11 @@ namespace MASXamarinFormsDemo.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new ItemEditorPage(/* null creates a new Idea */)));
+            // Make sure they're logged in before adding.
+            if (await Utility.EnsureLoggedIn(this, true))
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new ItemEditorPage(/* null creates a new Idea */)));
+            }
         }
 
         protected override void OnAppearing()

@@ -330,12 +330,8 @@ namespace MASXamarinFormsDemo.iOS
                 MAS.SetConfigurationFileName("msso_config_public");
                 MAS.GrantFlow = MASGrantFlow.ClientCredentials;
                 if (MAS.MASState == MASState.DidStart) return; // already started
-                var success = false;
-                MAS.StartWithDefaultConfiguration(true, (result, error) =>
-                {
-                    success = error != null;
-                    if (!success) throw new CouldNotStartMasException();
-                });
+                var result = await MAS.StartWithDefaultConfigurationAsync(true);
+                if (result.Item2 != null) throw new CouldNotStartMasException();
             }
             catch (Exception ex)
             {
