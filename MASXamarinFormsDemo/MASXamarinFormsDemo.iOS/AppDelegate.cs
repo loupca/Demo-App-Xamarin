@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MASXamarinFormsDemo.Exceptions;
 using UIKit;
 
 namespace MASXamarinFormsDemo.iOS
@@ -22,7 +23,20 @@ namespace MASXamarinFormsDemo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+
+            // Attempt to initialize MAS and pass the reference to our Xamarin.Forms App instance.
+            try
+            {
+                global::Xamarin.Forms.Forms.Init();
+                App.IdeaService = new MasPoweredIdeaServiceiOS();
+            }
+            catch (CouldNotStartMasException)
+            {
+                //TODO: Show an alert if we couldn't start MAS.                
+                return false;
+            }
+
+            // Hand control over to Xamarin.Forms.
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

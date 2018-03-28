@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace MASXamarinFormsDemo.Models.JsonResponse
 {
+    /// <summary>
+    /// Represents an Idea when returned for use in a list.
+    /// </summary>
     public class IdeaListResponseJson
     {
         [JsonProperty("id")]
@@ -21,6 +24,5 @@ namespace MASXamarinFormsDemo.Models.JsonResponse
 
         [JsonProperty("description")]
         public string Description { get; set; }
-
     }
 }
