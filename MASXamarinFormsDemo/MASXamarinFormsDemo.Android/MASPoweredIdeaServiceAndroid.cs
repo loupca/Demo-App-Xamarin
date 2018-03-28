@@ -85,10 +85,9 @@ namespace MASXamarinFormsDemo.Droid
                 if (IsAuthenticated)
                 {
                     MASUser.CurrentUser.Logout(null);
-                    App.RaiseAuthChanged();
-                    return true;
                 }
 
+                App.RaiseAuthChanged();
                 return true; // already logged in
             }
             catch (Exception ex)

@@ -30,9 +30,9 @@ namespace MASXamarinFormsDemo.Views
         {
             // Subscribe to auth changes.
             MessagingCenter.Subscribe<IIdeaService<Idea>, string>(this, "AuthChanged", (sender, message) =>
-     {
-         UpdateLoginDisplay();
-     });
+             {
+                 UpdateLoginDisplay();
+             });
 
             // Update the logged-in status UI.
             UpdateLoginDisplay();
